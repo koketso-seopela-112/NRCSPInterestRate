@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments ::html_head"></head>
+<body>
+	<header th:replace="fragments :: html_header"></header>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<main>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Number:</th>
+					<th>Agreement Type</th>
+					<th>Formula</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="spec : ${specs}">
+					<td th:text="${spec.id}"></td>
+					<td th:text="${spec.agreementType}"></td>
+					<td><span th:if="${spec.agreementType == 'Short term credit transactions' || spec.agreementType == 'Incidental credit agreements'}" th:text="${spec.rate}" ></span>
+					<span th:if="${spec.agreementType == 'Short term credit transactions' || spec.agreementType == 'Incidental credit agreements'}">% per month </span>
+					<span th:unless="${spec.agreementType == 'Short term credit transactions' || spec.agreementType == 'Incidental credit agreements'}">[(RR x 2.2) +</span>
+					<span th:unless="${spec.agreementType == 'Short term credit transactions' || spec.agreementType == 'Incidental credit agreements'}" th:text="${spec.rate}"></span>
+					<span th:unless="${spec.agreementType == 'Short term credit transactions' || spec.agreementType == 'Incidental credit agreements'}">%] per year</span>
+					</td>
+
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</main>
+
+</body>
+</html>

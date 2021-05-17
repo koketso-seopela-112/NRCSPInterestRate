@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments ::html_head">
+</head>
+<body>
+	<header th:replace="fragments :: html_header"></header>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<main>
+		<form th:action="@{/}" th:object="${input}"
+			style="max-width: 600px; margin: 0 auto;" method="post">
+			<div class="m-3">
+				<div class="form-group row">
+					<label for="amount" class="col-form-label col-4">Amount
+						interest(to Calculate Interest): </label>
+					<div class="col-sm-6">
+						<input type="number" required th:field="*{amount}" name="amount"
+							class="form-control" id="amount"
+							placeholder="Amount interest must be calculated on.">
+					</div>
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></div>
+
+				</div>
+			</div>
+			<div class="m-3">
+				<div class="form-group row">
+					<label for="agreement" class="col-form-label col-4">Agreement
+						Type: </label>
+					<div class="col-sm-6">
+						<select id="agreement" required th:field="*{agreement}"
+							class="form-control">
+							<option value="">--None--</option>
+							<option value="Mortgage agreements">Mortgage agreements</option>
+							<option value="Credit facilities">Credit facilities</option>
+							<option value="Unsecured credit transactions">Unsecured
+								credit transactions</option>
+							<option value="development of a small business">
+								Development of a small business</option>
+							<option value="low income housing (unsecured)">Low
+								income housing (unsecured)</option>
+							<option value="Short term credit transactions">Short
+								term credit transactions</option>
+							<option value="Other credit agreements">Other credit
+								agreements</option>
+							<option value="Incidental credit agreements">Incidental
+								credit agreements</option>
+						</select>
+						<div class="alert alert-warning" 
+							th:if="${#fields.hasErrors('agreement')}"
+							th:errors="*{agreement}"></div>
+					</div>
+				</div>
+			</div>
+			<div class="m-3">
+				<div class="form-group row">
+					<label for="startDate" class="col-form-label col-4">Interest
+						Start date</label>
+					<div class="col-sm-6">
+						<input type="date" name="startDate" required th:field="*{startDate}"
+							class="form-control" id="startDate"
+							placeholder="Start date from where interest must be calculated from">
+						<div class="alert alert-warning"
+							th:if="${#fields.hasErrors('startDate')}"
+							th:errors="*{startDate}"></div>
+					</div>
+				</div>
+			</div>
+			<div class="m-3">
+				<div class="form-group row">
+					<label for="endDate" class="col-form-label col-4">Interest
+						Start date</label>
+					<div class="col-sm-6">
+						<input type="date" name="endDate" required th:field="*{endDate}"
+							class="form-control" id="startDate"
+							placeholder="End date from where interest must be calculated from">
+						<div class="alert alert-error"
+							th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></div>
+					</div>
+				</div>
+			</div>
+			<div class="m-3">
+				<div class="form-group row">
+					<label for="repoRate" class="col-form-label col-4">Repo
+						Rate: </label>
+					<div class="col-sm-6">
+						<input type="number" name="repoRate" required th:field="*{repoRate}"
+							class="form-control" id="repoRate" placeholder="The Repo Rate.">
+						<div class="alert alert-warning"
+							th:if="${#fields.hasErrors('repoRate')}" th:errors="*{repoRate}"></div>
+					</div>
+				</div>
+			</div>
+			<div class="m-3">
+				<div class="form-group row">
+					<label for="calculatedInterest" class="col-form-label col-4">Calculated
+						Interest Amount: </label>
+					<div class="col-sm-6">
+						<input type="number" disabled="disabled" name="calculatedInterest"
+							th:field="*{calculatedInterest}" class="form-control"
+							id="calculatedInterest">
+					</div>
+				</div>
+			</div>
+			<div class="m-3">
+				<div class="form-group row">
+					<div class="col-12" align="center">
+						<button class="btn btn-success" type="submit" style="width: 40%">Calculate</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</main>
+</body>
+</html>
